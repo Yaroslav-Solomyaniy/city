@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Nunito:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@tailwind utilities;
+
+:root {
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Nunito', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body), serif;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    /* overflow-x on body instead of html — won't clip sticky/fixed children */
+    overflow-x: clip;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+.animate-delay-600 { animation-delay: 600ms; }
+
+.opacity-0-init {
+    opacity: 0;
+}
+
+@layer utilities {
+    .text-shadow {
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .backdrop-strong {
+        backdrop-filter: blur(12px) saturate(1.5);
+    }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
