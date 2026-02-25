@@ -34,7 +34,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
             </div>
 
             {/* ── Контент ── */}
-            <div className="relative z-10 flex-1 flex items-center justify-center px-4 pt-24 pb-12">
+            <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-16">
                 <div
                     className="max-w-4xl w-full text-center rounded-3xl p-10 md:p-14"
                     style={{
