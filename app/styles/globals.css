@@ -1,27 +1,248 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Nunito:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @tailwind utilities;
 
-:root {
+/* DARK (default) */
+:root,
+[data-theme='dark'] {
     --font-display: 'Playfair Display', serif;
-    --font-body: 'Nunito', sans-serif;
+    --font-body:    'Nunito', sans-serif;
+
+    --bg-page:       #0f1729;
+    --bg-surface:    #151f38;
+    --bg-card:       rgba(21,31,56,0.92);
+    --bg-card-hover: rgba(26,38,68,0.98);
+    --bg-input:      rgba(255,255,255,0.07);
+
+    --border:        rgba(255,255,255,0.09);
+    --border-card:   rgba(255,255,255,0.11);
+    --border-input:  rgba(255,255,255,0.13);
+    --border-hover:  rgba(96,165,250,0.4);
+
+    --text-primary:   #f1f5f9;
+    --text-secondary: #a0b3cc;
+    --text-muted:     #637a96;
+    --text-accent:    #60a5fa;
+
+    --filter-active-bg:     #1e293b;
+    --filter-active-text:   #f1f5f9;
+    --filter-active-border: #334155;
+    --filter-inactive-bg:   rgba(255,255,255,0.04);
+    --filter-inactive-text: #94a3b8;
+    --filter-inactive-border: rgba(255,255,255,0.08);
+    --filter-inactive-hover-border: rgba(255,255,255,0.2);
+
+    --table-header-text: #94a3b8;
+    --table-row-hover:   rgba(255,255,255,0.03);
+
+    --header-bg:            rgba(15,25,52,0.80);
+    --header-bg-scroll:     rgba(15,25,52,0.96);
+    --header-border:        rgba(255,255,255,0.10);
+    --header-border-scroll: rgba(255,255,255,0.14);
+    --header-shadow:        0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+    --header-shadow-scroll: 0 8px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+
+    --nav-active-bg:   rgba(255,255,255,0.1);
+    --nav-active-text: #fff;
+    --nav-inactive-text:       #94a3b8;
+    --nav-inactive-hover-text: #fff;
+    --nav-inactive-hover-bg:   rgba(255,255,255,0.05);
+    --nav-dot:         #60a5fa;
+
+    --search-icon:        #94a3b8;
+    --search-icon-hover:  #fff;
+    --search-input-bg:    rgba(255,255,255,0.08);
+    --search-input-border: rgba(96,165,250,0.35);
+    --search-input-text:  #f1f5f9;
+    --city-name:  #f1f5f9;
+    --kp-name:    #475569;
+    --divider:    rgba(255,255,255,0.08);
+    --burger-text:       #94a3b8;
+    --burger-hover-text: #fff;
+    --burger-hover-bg:   rgba(255,255,255,0.05);
+    --brand-text: #fff;
+    --mobile-border:       rgba(255,255,255,0.06);
+    --mobile-input-bg:     rgba(255,255,255,0.05);
+    --mobile-input-border: rgba(255,255,255,0.08);
+    --toggle-icon:       #94a3b8;
+    --toggle-hover-icon: #f1f5f9;
+    --toggle-hover-bg:   rgba(255,255,255,0.07);
+
+    --bottom-nav-bg:       rgba(15,25,52,0.98);
+    --bottom-nav-border:   rgba(255,255,255,0.10);
+    --bottom-nav-active:   #60a5fa;
+    --bottom-nav-inactive: #5a6a85;
+    --bottom-nav-tablet-bg: rgba(15,25,52,0.98);
+
+    --sidebar-item-hover:         rgba(255,255,255,0.07);
+    --sidebar-item-active-bg:     rgba(59,130,246,0.18);
+    --sidebar-item-active-border: rgba(59,130,246,0.35);
+    --sidebar-item-active-text:   #fff;
+    --sidebar-item-inactive-text: #8ea3c0;
+
+    --scrollbar-track: rgba(255,255,255,0.02);
+    --scrollbar-thumb: rgba(255,255,255,0.10);
+
+    --about-bg:           linear-gradient(180deg, rgba(15,23,42,0.98) 0%, rgba(10,18,38,1) 100%);
+    --about-card-bg:      rgba(255,255,255,0.03);
+    --about-card-border:  rgba(255,255,255,0.06);
+    --about-card-hover:   rgba(255,255,255,0.05);
+    --about-text:         #fff;
+    --about-desc:         #cbd5e1;
+    --about-muted:        #64748b;
+    --about-form-bg:      rgba(255,255,255,0.03);
+    --about-form-border:  rgba(255,255,255,0.07);
+    --about-input-bg:     rgba(255,255,255,0.05);
+    --about-input-border: rgba(255,255,255,0.08);
+    --about-input-text:   #fff;
+    --about-label:        #94a3b8;
+    --about-tab-active-bg:     rgba(59,130,246,0.15);
+    --about-tab-active-border: rgba(59,130,246,0.3);
+    --about-tab-inactive-bg:   rgba(255,255,255,0.03);
+    --about-tab-inactive-border: rgba(255,255,255,0.06);
+    --about-select-option-bg:  #0f172a;
+    --about-warn-bg:    rgba(239,68,68,0.08);
+    --about-warn-border: rgba(239,68,68,0.2);
+    --about-warn-text:  #fca5a5;
 }
 
-* {
-    box-sizing: border-box;
+/* LIGHT */
+[data-theme='light'] {
+    --bg-page:       #f4f6fb;
+    --bg-surface:    #fff;
+    --bg-card:       #fff;
+    --bg-card-hover: #f8faff;
+    --bg-input:      rgba(0,0,0,0.04);
+
+    --border:        #e8edf5;
+    --border-card:   #e2e8f2;
+    --border-input:  #cbd5e1;
+    --border-hover:  rgba(59,130,246,0.4);
+
+    --text-primary:   #0f172a;
+    --text-secondary: #475569;
+    --text-muted:     #94a3b8;
+    --text-accent:    #2563eb;
+
+    --filter-active-bg:     #0f172a;
+    --filter-active-text:   #fff;
+    --filter-active-border: #0f172a;
+    --filter-inactive-bg:   #fff;
+    --filter-inactive-text: #475569;
+    --filter-inactive-border: #e2e8f0;
+    --filter-inactive-hover-border: #94a3b8;
+
+    --table-header-text: #94a3b8;
+    --table-row-hover:   #f8faff;
+
+    --header-bg:            rgba(255,255,255,0.88);
+    --header-bg-scroll:     rgba(255,255,255,0.97);
+    --header-border:        rgba(0,0,0,0.07);
+    --header-border-scroll: rgba(0,0,0,0.10);
+    --header-shadow:        0 4px 20px rgba(0,0,0,0.07);
+    --header-shadow-scroll: 0 8px 40px rgba(0,0,0,0.12);
+
+    --nav-active-bg:   rgba(37,99,235,0.08);
+    --nav-active-text: #1d4ed8;
+    --nav-inactive-text:       #64748b;
+    --nav-inactive-hover-text: #0f172a;
+    --nav-inactive-hover-bg:   #f1f5f9;
+    --nav-dot: #3b82f6;
+
+    --search-icon:        #94a3b8;
+    --search-icon-hover:  #0f172a;
+    --search-input-bg:    rgba(59,130,246,0.05);
+    --search-input-border: rgba(59,130,246,0.35);
+    --search-input-text:  #0f172a;
+    --city-name:  #0f172a;
+    --kp-name:    #94a3b8;
+    --divider:    rgba(0,0,0,0.08);
+    --burger-text:       #64748b;
+    --burger-hover-text: #0f172a;
+    --burger-hover-bg:   #f1f5f9;
+    --brand-text: #0f172a;
+    --mobile-border:       rgba(0,0,0,0.06);
+    --mobile-input-bg:     rgba(0,0,0,0.04);
+    --mobile-input-border: rgba(0,0,0,0.08);
+    --toggle-icon:       #64748b;
+    --toggle-hover-icon: #0f172a;
+    --toggle-hover-bg:   #f1f5f9;
+
+    --bottom-nav-bg:       rgba(255,255,255,0.97);
+    --bottom-nav-border:   #e8edf5;
+    --bottom-nav-active:   #2563eb;
+    --bottom-nav-inactive: #94a3b8;
+    --bottom-nav-tablet-bg: rgba(255,255,255,0.97);
+
+    --sidebar-item-hover:         #f1f5f9;
+    --sidebar-item-active-bg:     #eff6ff;
+    --sidebar-item-active-border: #bfdbfe;
+    --sidebar-item-active-text:   #1d4ed8;
+    --sidebar-item-inactive-text: #475569;
+
+    --scrollbar-track: #f1f5f9;
+    --scrollbar-thumb: #cbd5e1;
+
+    --about-bg:           linear-gradient(180deg, #eef3ff 0%, #f4f6fb 100%);
+    --about-card-bg:      #fff;
+    --about-card-border:  #e8edf5;
+    --about-card-hover:   #f8faff;
+    --about-text:         #0f172a;
+    --about-desc:         #475569;
+    --about-muted:        #94a3b8;
+    --about-form-bg:      #fff;
+    --about-form-border:  #e8edf5;
+    --about-input-bg:     #f8fafc;
+    --about-input-border: #e2e8f0;
+    --about-input-text:   #0f172a;
+    --about-label:        #64748b;
+    --about-tab-active-bg:     #eff6ff;
+    --about-tab-active-border: #bfdbfe;
+    --about-tab-inactive-bg:   #f8fafc;
+    --about-tab-inactive-border: #e8edf5;
+    --about-select-option-bg:  #fff;
+    --about-warn-bg:    #fef2f2;
+    --about-warn-border: #fecaca;
+    --about-warn-text:  #dc2626;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+/* BASE */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-    font-family: var(--font-body), serif;
-    background-color: #0f172a;
-    color: #e2e8f0;
-    /* overflow-x on body instead of html — won't clip sticky/fixed children */
+    font-family: var(--font-body);
+    background-color: var(--bg-page);
+    color: var(--text-primary);
     overflow-x: clip;
+    /* Removed transition: background-color/color — it triggered full-page
+       repaint on every React state update, causing the "Rendering: 1122ms" spike */
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fabMenuIn {
+    from { opacity: 0; transform: translateY(8px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate-delay-100 { animation-delay: 100ms; }
@@ -31,20 +252,41 @@ body {
 .animate-delay-500 { animation-delay: 500ms; }
 .animate-delay-600 { animation-delay: 600ms; }
 
-.opacity-0-init {
-    opacity: 0;
+.anim-card   { opacity: 0; animation: fadeSlideUp .4s ease-out forwards; animation-iteration-count: 1; }
+.anim-in     { opacity: 0; animation: fadeIn .3s ease-out forwards; animation-iteration-count: 1; }
+.fab-menu    { animation: fabMenuIn .18s ease-out forwards; }
+.modal-panel { animation: modalIn .22s ease-out forwards; }
+
+/* CARDS */
+.city-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    transition: transform .2s ease, box-shadow .2s ease;
+    /* NO will-change here — applying it permanently to 12 cards creates 12 GPU
+       compositor layers and destroys performance. Only promote on hover. */
 }
+.city-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.city-card .card-img  { transition: transform .3s ease; will-change: transform; contain: strict; }
+.city-card:hover .card-img { transform: scale(1.06); }
+.card-arrow { transition: transform .2s; }
+.city-card:hover .card-arrow { transform: translateX(4px); }
+
+.res-list-item { transition: transform .18s cubic-bezier(.4,0,.2,1), box-shadow .18s; }
+.res-list-item:hover { transform: translateX(3px); box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+.res-list-item .list-ext { opacity: 0; transition: opacity .15s; }
+.res-list-item:hover .list-ext { opacity: 1; }
+
+.res-row { transition: background .15s; }
+.res-row:hover { background: var(--table-row-hover); }
+.res-row .row-ext { opacity: 0; transition: opacity .15s; }
+.res-row:hover .row-ext { opacity: 1; }
+
+.res-grid-card { transition: transform .22s cubic-bezier(.4,0,.2,1), box-shadow .22s; }
+.res-grid-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
+.res-grid-card .grid-ext { opacity: 0; transition: opacity .15s; }
+.res-grid-card:hover .grid-ext { opacity: 1; }
 
 @layer utilities {
-    .text-shadow {
-        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-    .backdrop-strong {
-        backdrop-filter: blur(12px) saturate(1.5);
-    }
-}
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
+    .text-shadow { text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .backdrop-strong { backdrop-filter: blur(12px) saturate(1.5); }
 }

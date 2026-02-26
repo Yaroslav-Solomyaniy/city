@@ -1,8 +1,8 @@
 'use client'
-import Hero from "@/app/components/Hero";
+import Hero from "@/app/components/hero";
 
 export default function Home() {
     return (
-        <Hero onOpenModal={() => console.log('Modal')}/>
+        <Hero/>
     );
 }

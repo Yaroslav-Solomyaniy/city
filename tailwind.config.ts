@@ -14,7 +14,7 @@ const config: Config = {
             },
             colors: {
                 portal: {
-                    50: '#f0f7ff',
+                    50:  '#f0f7ff',
                     100: '#dbeafe',
                     400: '#60a5fa',
                     500: '#3b82f6',
@@ -27,25 +27,6 @@ const config: Config = {
                     400: '#f59e0b',
                     500: '#d97706',
                 }
-            },
-            animation: {
-                'fade-in': 'fadeIn 0.8s ease-out forwards',
-                'fade-up': 'fadeUp 0.8s ease-out forwards',
-                'scale-in': 'scaleIn 0.3s ease-out forwards',
-            },
-            keyframes: {
-                fadeIn: {
-                    from: { opacity: '0' },
-                    to: { opacity: '1' },
-                },
-                fadeUp: {
-                    from: { opacity: '0', transform: 'translateY(30px)' },
-                    to: { opacity: '1', transform: 'translateY(0)' },
-                },
-                scaleIn: {
-                    from: { opacity: '0', transform: 'scale(0.95)' },
-                    to: { opacity: '1', transform: 'scale(1)' },
-                },
             },
         },
     },
