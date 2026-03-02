@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import {
     Heart, GraduationCap, Building2, Users,
     Bus, School, Baby, Hospital,
-    ExternalLink, Search, X, ChevronRight, LayoutGrid, LayoutList, Table2,
+    ExternalLink, Search, X, ChevronRight,
     FolderOpen, Globe, ArrowLeft,
 } from 'lucide-react'
 import InnerPageLayout, {BottomNavItem} from "@/app/components/inner-page-layout";
@@ -184,7 +184,7 @@ export default function CategoryPage() {
                 <input
                     type="text" placeholder="Пошук ресурсів..."
                     value={search} onChange={e => setSearch(e.target.value)}
-                    className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-[color:var(--text-muted)]"
+                    className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-(--text-muted)"
                     style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}
                 />
                 {search && <button onClick={() => setSearch('')} style={{ color: 'var(--text-muted)' }}><X size={14}/></button>}
@@ -264,16 +264,16 @@ export default function CategoryPage() {
         <div className="min-h-screen" style={{ background: 'var(--bg-page)', paddingTop: '80px' }}>
 
             {/* Hero strip */}
-            <div className="relative h-[200px] overflow-hidden">
+            <div className="relative h-50 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={cat.photo} alt={cat.title} loading="lazy" decoding="async" className="w-full h-full object-cover" style={{ contain: 'strict' }}/>
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7))' }}/>
-                <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 pb-6 max-w-[1280px] mx-auto">
+                <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 pb-6 max-w-7xl mx-auto">
                     <div className="flex items-center gap-2 mb-2 text-[13px] text-white/70">
                         <Link href="/" className="no-underline text-white/70 hover:text-white transition-colors">Головна</Link>
-                        <span className="text-[10px]">›</span>
+                        <span className="text-[10px]">{">"}</span>
                         <Link href="/categories" className="no-underline text-white/70 hover:text-white transition-colors">Категорії</Link>
-                        <span className="text-[10px]">›</span>
+                        <span className="text-[10px]">{">"}</span>
                         {openSub ? (
                             <>
                                 <button onClick={() => { setOpenSub(null); setSearch('') }} className="text-white/70 hover:text-white transition-colors">{cat.title}</button>
@@ -367,7 +367,7 @@ export default function CategoryPage() {
                 {/* GRID */}
                 {view === 'grid' && resources.length > 0 && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                        {resources.map((res, idx) => {
+                        {resources.map((res) => {
                             const RIcon = res.icon
                             return (
                                 <a key={res.id} href={res.url} target="_blank" rel="noopener noreferrer"
@@ -405,7 +405,7 @@ export default function CategoryPage() {
                 {/* LIST */}
                 {view === 'list' && resources.length > 0 && (
                     <div className="flex flex-col gap-2.5">
-                        {resources.map((res, idx) => {
+                        {resources.map((res) => {
                             const RIcon = res.icon
                             return (
                                 <a key={res.id} href={res.url} target="_blank" rel="noopener noreferrer"

@@ -77,20 +77,20 @@ export default function CategoriesPage() {
         <>
             {/* Search */}
             <div
-                className="flex items-center gap-2.5 rounded-xl px-4 py-3 shadow-sm"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                className="flex items-center gap-2.5 rounded-xl px-4 py-3"
+                style={{ background: 'var(--about-input-bg)', border: '1px solid var(--about-input-border)' }}
             >
-                <Search size={15} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
+                <Search size={15} style={{ color: 'var(--about-label)', flexShrink: 0 }} />
                 <input
                     type="text"
                     placeholder="Пошук категорії..."
                     value={search}
                     onChange={e => setSearch(e.target.value)}
-                    className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-[color:var(--text-muted)]"
-                    style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}
+                    className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-[color:var(--about-muted)]"
+                    style={{ color: 'var(--about-text)', fontFamily: 'var(--font-body)' }}
                 />
                 {search && (
-                    <button onClick={() => setSearch('')} style={{ color: 'var(--text-muted)' }}>
+                    <button onClick={() => setSearch('')} style={{ color: 'var(--about-muted)' }}>
                         <X size={14} />
                     </button>
                 )}
@@ -98,8 +98,8 @@ export default function CategoriesPage() {
 
             {/* View toggle */}
             <div
-                className="flex items-center gap-1 rounded-xl p-1 shadow-sm"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                className="flex items-center gap-1 rounded-xl p-1"
+                style={{ background: 'var(--about-card-bg)', border: '1px solid var(--about-card-border)' }}
             >
                 {VIEW_OPTIONS.map(({ mode, icon: Icon, label }) => (
                     <button
@@ -107,8 +107,8 @@ export default function CategoriesPage() {
                         onClick={() => setView(mode)}
                         className="flex flex-1 items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-[13px] font-semibold transition-all duration-150"
                         style={view === mode
-                            ? { background: 'var(--filter-active-bg)',   color: 'var(--filter-active-text)' }
-                            : { background: 'transparent',               color: 'var(--text-secondary)' }
+                            ? { background: 'rgba(59,130,246,0.18)', color: '#60a5fa', border: '1px solid rgba(59,130,246,0.3)' }
+                            : { background: 'transparent', color: 'var(--about-muted)' }
                         }
                     >
                         <Icon size={14} /> {label}
@@ -118,10 +118,10 @@ export default function CategoriesPage() {
 
             {/* Stats */}
             <div
-                className="rounded-2xl p-5 shadow-sm"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                className="rounded-2xl p-5"
+                style={{ background: 'var(--about-card-bg)', border: '1px solid var(--about-card-border)' }}
             >
-                <p className="font-semibold text-[14px] mb-3" style={{ color: 'var(--text-primary)' }}>
+                <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-4">
                     Статистика
                 </p>
                 {[
@@ -131,11 +131,11 @@ export default function CategoriesPage() {
                 ].map(s => (
                     <div
                         key={s.l}
-                        className="flex items-center justify-between py-2 border-b last:border-0"
-                        style={{ borderColor: 'var(--border)' }}
+                        className="flex items-center justify-between py-2.5 border-b last:border-0"
+                        style={{ borderColor: 'var(--about-card-border)' }}
                     >
-                        <span className="text-[13px]" style={{ color: 'var(--text-secondary)' }}>{s.l}</span>
-                        <span className="font-bold text-[14px]" style={{ color: 'var(--text-primary)' }}>{s.v}</span>
+                        <span className="text-[13px]" style={{ color: 'var(--about-muted)' }}>{s.l}</span>
+                        <span className="font-bold text-[15px]" style={{ color: 'var(--about-text)' }}>{s.v}</span>
                     </div>
                 ))}
             </div>
@@ -144,11 +144,13 @@ export default function CategoriesPage() {
 
     return (
         <>
-            <div className="min-h-screen" style={{ background: 'var(--bg-page)', paddingTop: '80px' }}>
+            <div className="min-h-screen relative" style={{ background: 'var(--about-bg)', paddingTop: '80px' }}>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] pointer-events-none"
+                     style={{ background: 'radial-gradient(ellipse at center, rgba(59,130,246,0.08) 0%, transparent 70%)' }}/>
 
                 {/* PAGE HEADER */}
-                <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-8 pb-5">
-                    <div className="flex items-center gap-2 mb-2 text-[13px]" style={{ color: 'var(--text-muted)' }}>
+                <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 pb-6">
+                    <div className="flex items-center gap-2 mb-4 text-[13px]" style={{ color: 'var(--text-muted)' }}>
                         <Link
                             href="/"
                             className="transition-colors hover:text-[color:var(--text-accent)]"
@@ -159,13 +161,17 @@ export default function CategoriesPage() {
                         <span className="text-[10px]">›</span>
                         <span style={{ color: 'var(--text-primary)' }}>Категорії послуг</span>
                     </div>
+                    <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 mb-4 px-3 py-1 rounded-full"
+                          style={{ background: 'rgba(59,130,246,0.12)', border: '1px solid rgba(59,130,246,0.25)' }}>
+                        Послуги громади
+                    </span>
                     <h1
-                        className="text-[clamp(24px,4vw,38px)] font-bold leading-tight m-0"
-                        style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
+                        className="text-[clamp(28px,4vw,48px)] font-bold leading-tight m-0 mb-2"
+                        style={{ fontFamily: 'var(--font-display)', color: 'var(--about-text)' }}
                     >
                         Категорії послуг
                     </h1>
-                    <p className="mt-1.5 text-[14px]" style={{ color: 'var(--text-secondary)' }}>
+                    <p className="text-[15px]" style={{ color: 'var(--about-desc)' }}>
                         {categories.length} категорій · {totalServices}+ послуг для мешканців Черкас
                     </p>
                 </div>

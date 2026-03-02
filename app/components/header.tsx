@@ -120,7 +120,7 @@ export default function Header() {
                             alt="Герб Черкаської міської ради"
                             className="transition-transform duration-200 group-hover:scale-105"
                         />
-                        <div className="flex flex-col leading-tight">
+                        <div className="hidden md:flex flex-col leading-tight">
                             <span
                                 className={`font-bold text-[13.5px] whitespace-nowrap leading-snug transition-all duration-200 ${searchOpen ? 'hidden lg:block' : 'block'}`}
                                 style={{ color: v('#f1f5f9', '--city-name', '#111827') }}
@@ -165,9 +165,9 @@ export default function Header() {
 
                     <div className="hidden xl:block h-7 w-px shrink-0" style={{ background: v('rgba(255,255,255,0.08)', '--divider') }} />
 
-                    {/* Пошук */}
+                    {/* Пошук — на десктопі розширюється inline, на мобайлі тільки іконка */}
                     <div
-                        className="flex items-center overflow-hidden rounded-full transition-all duration-300"
+                        className="hidden md:flex items-center overflow-hidden rounded-full transition-all duration-300"
                         style={{
                             width:      searchOpen ? '200px' : '34px',
                             background: searchOpen ? v('rgba(255,255,255,0.08)', '--search-input-bg') : 'transparent',
@@ -208,6 +208,25 @@ export default function Header() {
                             onKeyDown={e => e.key === 'Escape' && setSearchOpen(false)}
                         />
                     </div>
+
+                    {/* Пошук на мобайлі — тільки іконка, відкриває рядок нижче */}
+                    <button
+                        onClick={() => { setSearchOpen(o => !o); if (searchOpen) setSearchValue('') }}
+                        className="md:hidden w-[34px] h-[34px] flex items-center justify-center shrink-0 transition-colors rounded-xl"
+                        style={{ color: v('#94a3b8', '--search-icon', '#6b7280') }}
+                        aria-label="Пошук"
+                    >
+                        {searchOpen ? (
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                                <path d="M1.5 1.5l10 10M11.5 1.5l-10 10"/>
+                            </svg>
+                        ) : (
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="6.5" cy="6.5" r="4.2"/>
+                                <path d="M10 10l2.8 2.8"/>
+                            </svg>
+                        )}
+                    </button>
 
                     {/* Theme toggle */}
                     <button
@@ -257,6 +276,36 @@ export default function Header() {
                             </svg>
                         )}
                     </button>
+                </div>
+
+                {/* ════ MOBILE SEARCH ROW ════ */}
+                <div
+                    className="md:hidden overflow-hidden transition-all duration-300"
+                    style={{
+                        maxHeight: searchOpen && !mobileOpen ? '60px' : '0',
+                        borderTop: searchOpen && !mobileOpen ? `1px solid ${v('rgba(255,255,255,0.06)', '--mobile-border')}` : 'none',
+                    }}
+                >
+                    <div className="px-4 py-2.5 flex items-center gap-2"
+                         style={{
+                             background: v('rgba(255,255,255,0.04)', '--mobile-input-bg'),
+                         }}
+                    >
+                        <svg width="13" height="13" viewBox="0 0 15 15" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="6.5" cy="6.5" r="4.2"/>
+                            <path d="M10 10l2.8 2.8"/>
+                        </svg>
+                        <input
+                            ref={searchRef}
+                            type="text"
+                            value={searchValue}
+                            onChange={e => setSearchValue(e.target.value)}
+                            placeholder="Пошук по порталу..."
+                            className="flex-1 bg-transparent text-[14px] placeholder-slate-500 outline-none"
+                            style={{ color: v('#f1f5f9', '--search-input-text') }}
+                            onKeyDown={e => e.key === 'Escape' && setSearchOpen(false)}
+                        />
+                    </div>
                 </div>
 
                 {/* ════ MOBILE DROPDOWN ════ */}

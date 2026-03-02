@@ -10,23 +10,23 @@
 
     --bg-page:       #0f1729;
     --bg-surface:    #151f38;
-    --bg-card:       rgba(21,31,56,0.92);
-    --bg-card-hover: rgba(26,38,68,0.98);
-    --bg-input:      rgba(255,255,255,0.07);
+    --bg-card:       #23272e;
+    --bg-card-hover: #2a2f38;
+    --bg-input:      rgba(255,255,255,0.06);
 
-    --border:        rgba(255,255,255,0.09);
-    --border-card:   rgba(255,255,255,0.11);
-    --border-input:  rgba(255,255,255,0.13);
+    --border:        rgba(255,255,255,0.07);
+    --border-card:   rgba(255,255,255,0.10);
+    --border-input:  rgba(255,255,255,0.11);
     --border-hover:  rgba(96,165,250,0.4);
 
     --text-primary:   #f1f5f9;
-    --text-secondary: #a0b3cc;
-    --text-muted:     #637a96;
+    --text-secondary: #94a3b8;
+    --text-muted:     #475569;
     --text-accent:    #60a5fa;
 
-    --filter-active-bg:     #1e293b;
+    --filter-active-bg:     #1e2d4a;
     --filter-active-text:   #f1f5f9;
-    --filter-active-border: #334155;
+    --filter-active-border: #2d4166;
     --filter-inactive-bg:   rgba(255,255,255,0.04);
     --filter-inactive-text: #94a3b8;
     --filter-inactive-border: rgba(255,255,255,0.08);
@@ -35,10 +35,10 @@
     --table-header-text: #94a3b8;
     --table-row-hover:   rgba(255,255,255,0.03);
 
-    --header-bg:            rgba(15,25,52,0.80);
-    --header-bg-scroll:     rgba(15,25,52,0.96);
-    --header-border:        rgba(255,255,255,0.10);
-    --header-border-scroll: rgba(255,255,255,0.14);
+    --header-bg:            rgba(8,14,36,0.80);
+    --header-bg-scroll:     rgba(8,14,36,0.96);
+    --header-border:        rgba(255,255,255,0.07);
+    --header-border-scroll: rgba(255,255,255,0.10);
     --header-shadow:        0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
     --header-shadow-scroll: 0 8px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
 
@@ -68,17 +68,17 @@
     --toggle-hover-icon: #f1f5f9;
     --toggle-hover-bg:   rgba(255,255,255,0.07);
 
-    --bottom-nav-bg:       rgba(15,25,52,0.98);
-    --bottom-nav-border:   rgba(255,255,255,0.10);
+    --bottom-nav-bg:       rgba(8,14,36,0.97);
+    --bottom-nav-border:   rgba(255,255,255,0.08);
     --bottom-nav-active:   #60a5fa;
-    --bottom-nav-inactive: #5a6a85;
-    --bottom-nav-tablet-bg: rgba(15,25,52,0.98);
+    --bottom-nav-inactive: #475569;
+    --bottom-nav-tablet-bg: rgba(8,14,36,0.97);
 
-    --sidebar-item-hover:         rgba(255,255,255,0.07);
-    --sidebar-item-active-bg:     rgba(59,130,246,0.18);
-    --sidebar-item-active-border: rgba(59,130,246,0.35);
+    --sidebar-item-hover:         rgba(255,255,255,0.05);
+    --sidebar-item-active-bg:     rgba(59,130,246,0.15);
+    --sidebar-item-active-border: rgba(59,130,246,0.3);
     --sidebar-item-active-text:   #fff;
-    --sidebar-item-inactive-text: #8ea3c0;
+    --sidebar-item-inactive-text: #94a3b8;
 
     --scrollbar-track: rgba(255,255,255,0.02);
     --scrollbar-thumb: rgba(255,255,255,0.10);

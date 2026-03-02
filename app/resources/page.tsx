@@ -6,7 +6,7 @@ import {
     Hospital, Users, Shield, Building2, Bus,
     GraduationCap, Zap, ExternalLink, Search,
     Clock,
-    X, 
+    X,
 } from 'lucide-react'
 import InnerPageLayout, {BottomNavItem} from "@/app/components/inner-page-layout";
 import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../constants/view-mode';
@@ -87,20 +87,20 @@ export default function ResourcesPage() {
         <>
             {/* Search in sidebar */}
             <div
-                className="flex items-center gap-2.5 rounded-xl px-4 py-3 shadow-sm"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                className="flex items-center gap-2.5 rounded-xl px-4 py-3"
+                style={{ background: 'var(--about-input-bg)', border: '1px solid var(--about-input-border)' }}
             >
-                <Search size={15} style={{ color: 'var(--text-muted)', flexShrink: 0 }}/>
+                <Search size={15} style={{ color: 'var(--about-label)', flexShrink: 0 }}/>
                 <input
                     type="text"
                     placeholder="Пошук ресурсів..."
                     value={search}
                     onChange={e => setSearch(e.target.value)}
-                    className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-[color:var(--text-muted)]"
-                    style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}
+                    className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-[color:var(--about-muted)]"
+                    style={{ color: 'var(--about-text)', fontFamily: 'var(--font-body)' }}
                 />
                 {search && (
-                    <button onClick={() => setSearch('')} style={{ color: 'var(--text-muted)' }}>
+                    <button onClick={() => setSearch('')} style={{ color: 'var(--about-muted)' }}>
                         <X size={14}/>
                     </button>
                 )}
@@ -108,8 +108,8 @@ export default function ResourcesPage() {
 
             {/* View toggle */}
             <div
-                className="flex items-center gap-1 rounded-xl p-1 shadow-sm"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                className="flex items-center gap-1 rounded-xl p-1"
+                style={{ background: 'var(--about-card-bg)', border: '1px solid var(--about-card-border)' }}
             >
                 {VIEW_OPTIONS.map(({ mode, icon: Icon, label }) => (
                     <button
@@ -117,8 +117,8 @@ export default function ResourcesPage() {
                         onClick={() => setView(mode)}
                         className="flex flex-1 items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-[13px] font-semibold transition-all duration-150"
                         style={view === mode
-                            ? { background: 'var(--filter-active-bg)', color: 'var(--filter-active-text)' }
-                            : { background: 'transparent',             color: 'var(--text-secondary)' }
+                            ? { background: 'rgba(59,130,246,0.18)', color: '#60a5fa', border: '1px solid rgba(59,130,246,0.3)' }
+                            : { background: 'transparent', color: 'var(--about-muted)' }
                         }
                     >
                         <Icon size={14}/> {label}
@@ -128,10 +128,10 @@ export default function ResourcesPage() {
 
             {/* Category filters */}
             <div
-                className="rounded-2xl p-5 shadow-sm"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                className="rounded-2xl p-5"
+                style={{ background: 'var(--about-card-bg)', border: '1px solid var(--about-card-border)' }}
             >
-                <p className="font-semibold text-[14px] mb-3" style={{ color: 'var(--text-primary)' }}>Категорії</p>
+                <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-4">Категорії</p>
                 <div className="flex flex-col gap-1">
                     {CATS.map(cat => (
                         <button
@@ -139,8 +139,8 @@ export default function ResourcesPage() {
                             onClick={() => setActiveCategory(cat.slug)}
                             className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-[13px] font-medium text-left transition-all duration-150"
                             style={activeCategory === cat.slug
-                                ? { background: 'var(--sidebar-item-active-bg)', color: 'var(--sidebar-item-active-text)', border: '1px solid var(--sidebar-item-active-border)' }
-                                : { background: 'transparent', color: 'var(--sidebar-item-inactive-text)', border: '1px solid transparent' }
+                                ? { background: 'rgba(59,130,246,0.15)', color: '#60a5fa', border: '1px solid rgba(59,130,246,0.3)' }
+                                : { background: 'transparent', color: 'var(--about-muted)', border: '1px solid transparent' }
                             }
                         >
                             <span className="w-1.5 h-1.5 rounded-full bg-current opacity-60 shrink-0"/>
@@ -155,16 +155,11 @@ export default function ResourcesPage() {
 
             {/* Recently added */}
             <div
-                className="rounded-2xl p-5 shadow-sm"
-                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                className="rounded-2xl p-5"
+                style={{ background: 'var(--about-card-bg)', border: '1px solid var(--about-card-border)' }}
             >
-                <div className="flex items-center gap-2 mb-4">
-                    <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-input)' }}>
-                        <Clock size={13} style={{ color: 'var(--text-secondary)' }}/>
-                    </div>
-                    <p className="font-semibold text-[14px] m-0" style={{ color: 'var(--text-primary)' }}>Нещодавно додано</p>
-                </div>
-                <ul className="list-none p-0 m-0 flex flex-col divide-y" style={{ borderColor: 'var(--border)' }}>
+                <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-4">Нещодавно додано</p>
+                <ul className="list-none p-0 m-0 flex flex-col divide-y" style={{ borderColor: 'var(--about-card-border)' }}>
                     {recentlyAdded.slice(0, 5).map(r => {
                         const Icon = r.icon
                         return (
@@ -174,11 +169,11 @@ export default function ResourcesPage() {
                                         <Icon size={12} color={r.accent} strokeWidth={1.8}/>
                                     </div>
                                     <div className="min-w-0">
-                                        <p className="text-[12.5px] font-medium leading-snug m-0 line-clamp-2 transition-colors group-hover:text-[color:var(--text-accent)]"
-                                           style={{ color: 'var(--text-primary)' }}>
+                                        <p className="text-[12.5px] font-medium leading-snug m-0 line-clamp-2 transition-colors group-hover:text-blue-400"
+                                           style={{ color: 'var(--about-desc)' }}>
                                             {r.title}
                                         </p>
-                                        <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                                        <span className="text-[11px]" style={{ color: 'var(--about-muted)' }}>
                                             {new Date(r.addedAt).toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}
                                         </span>
                                     </div>
@@ -193,40 +188,46 @@ export default function ResourcesPage() {
 
     return (
         <>
-            <div className="min-h-screen" style={{ background: 'var(--bg-page)', paddingTop: '80px' }}>
+            <div className="min-h-screen relative" style={{ background: 'var(--about-bg)', paddingTop: '80px' }}>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] pointer-events-none"
+                     style={{ background: 'radial-gradient(ellipse at center, rgba(59,130,246,0.08) 0%, transparent 70%)' }}/>
 
                 {/* PAGE HEADER */}
-                <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-8 pb-5">
-                    <div className="flex items-center gap-2 mb-2 text-[13px]" style={{ color: 'var(--text-muted)' }}>
-                        <Link href="/" className="transition-colors hover:text-[color:var(--text-accent)]" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
+                <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 pb-6">
+                    <div className="flex items-center gap-2 mb-4 text-[13px]" style={{ color: 'var(--about-muted)' }}>
+                        <Link href="/" className="transition-colors hover:text-blue-400" style={{ color: 'var(--about-muted)', textDecoration: 'none' }}>
                             Головна
                         </Link>
                         <span className="text-[10px]">›</span>
-                        <span style={{ color: 'var(--text-primary)' }}>Ресурси</span>
+                        <span style={{ color: 'var(--about-text)' }}>Ресурси</span>
                     </div>
+                    <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-400 mb-4 px-3 py-1 rounded-full"
+                          style={{ background: 'rgba(59,130,246,0.12)', border: '1px solid rgba(59,130,246,0.25)' }}>
+                        Корисні посилання
+                    </span>
                     <h1
-                        className="text-[clamp(24px,4vw,38px)] font-bold leading-tight m-0"
-                        style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}
+                        className="text-[clamp(28px,4vw,48px)] font-bold leading-tight m-0 mb-2"
+                        style={{ fontFamily: 'var(--font-display)', color: 'var(--about-text)' }}
                     >
                         Корисні ресурси
                     </h1>
-                    <p className="mt-1.5 text-[14px]" style={{ color: 'var(--text-secondary)' }}>
+                    <p className="text-[15px]" style={{ color: 'var(--about-desc)' }}>
                         {RESOURCES.length} ресурсів · зовнішні сайти та сервіси для мешканців Черкас
                     </p>
 
                     {/* Mobile/tablet search (< lg) */}
                     <div
-                        className="lg:hidden flex items-center gap-2.5 rounded-xl px-4 py-3 mt-4 shadow-sm"
-                        style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
+                        className="lg:hidden flex items-center gap-2.5 rounded-xl px-4 py-3 mt-4"
+                        style={{ background: 'var(--about-input-bg)', border: '1px solid var(--about-input-border)' }}
                     >
-                        <Search size={15} style={{ color: 'var(--text-muted)', flexShrink: 0 }}/>
+                        <Search size={15} style={{ color: 'var(--about-label)', flexShrink: 0 }}/>
                         <input
                             type="text" placeholder="Пошук ресурсів..."
                             value={search} onChange={e => setSearch(e.target.value)}
-                            className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-[color:var(--text-muted)]"
-                            style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}
+                            className="flex-1 bg-transparent text-[14px] outline-none placeholder:text-[color:var(--about-muted)]"
+                            style={{ color: 'var(--about-text)', fontFamily: 'var(--font-body)' }}
                         />
-                        {search && <button onClick={() => setSearch('')} style={{ color: 'var(--text-muted)' }}><X size={14}/></button>}
+                        {search && <button onClick={() => setSearch('')} style={{ color: 'var(--about-muted)' }}><X size={14}/></button>}
                     </div>
 
                     {/* Mobile/tablet category pills */}

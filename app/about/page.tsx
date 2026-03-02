@@ -198,7 +198,7 @@ export default function AboutPage() {
             style={{ background: 'var(--about-bg)' }}
         >
             {/* Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[300px] pointer-events-none"
                  style={{ background: 'radial-gradient(ellipse at center, rgba(59,130,246,0.08) 0%, transparent 70%)' }}/>
 
             <div className="max-w-6xl mx-auto relative z-10 flex flex-col gap-24">

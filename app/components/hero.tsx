@@ -20,53 +20,38 @@ export default function Hero() {
                     fill
                     priority
                     className="object-cover"
-                    sizes="100vw"
+                    sizes="(max-width: 640px) 640px, (max-width: 1280px) 1280px, 1920px"
+                    quality={90}
                 />
 
-                {/* Темна тема — темний оверлей */}
                 <div className="absolute inset-0" style={{
                     background: 'linear-gradient(180deg, rgba(4,8,20,0.45) 0%, rgba(4,8,20,0.15) 45%, rgba(4,8,20,0.65) 100%)'
                 }}/>
-
-                {/* Світла тема — білий напівпрозорий оверлей (фото залишається, але посвітлішає) */}
-                {/*{!dark && (*/}
-                {/*    <div className="absolute inset-0" style={{*/}
-                {/*        background: 'linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.6) 100%)'*/}
-                {/*    }}/>*/}
-                {/*)}*/}
             </div>
 
             {/* ── СітіЧЕ поверх фото ── */}
-            {/*<div*/}
-            {/*    className="absolute top-24 left-0 right-0 z-10 flex flex-col items-center pointer-events-none select-none"*/}
-            {/*    // style={{ animation: 'fadeUp .7s ease-out forwards' }}*/}
-            {/*>*/}
-            {/*    <span*/}
-            {/*        className="font-black leading-none tracking-tight"*/}
-            {/*        style={{*/}
-            {/*            fontFamily: 'var(--font-display)',*/}
-            {/*            fontSize: 'clamp(64px, 12vw, 160px)',*/}
-            {/*            background: dark*/}
-            {/*                ? 'linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.55) 100%)'*/}
-            {/*                : 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)',*/}
-            {/*            WebkitBackgroundClip: 'text',*/}
-            {/*            WebkitTextFillColor: 'transparent',*/}
-            {/*            backgroundClip: 'text',*/}
-            {/*            filter: dark*/}
-            {/*                ? 'drop-shadow(0 4px 32px rgba(0,0,0,0.5))'*/}
-            {/*                : 'drop-shadow(0 2px 8px rgba(255,255,255,0.8))',*/}
-            {/*        }}*/}
-            {/*    >*/}
-            {/*        СітіЧЕ*/}
-            {/*    </span>*/}
-            {/*    <span*/}
-            {/*        className="text-[13px] font-semibold tracking-[0.35em] uppercase mt-1"*/}
-            {/*        style={{ color: dark ? 'rgba(255,255,255,0.5)' : 'rgba(15,23,42,0.6)' }}*/}
-            {/*    >*/}
-            {/*        Громадський портал Черкас*/}
-            {/*    </span>*/}
-            {/*</div>*/}
-
+            <div
+                className="absolute top-24 left-0 right-0 z-10 flex flex-col items-center pointer-events-none select-none"
+                style={{ animation: 'fadeUp .7s ease-out forwards' }}
+            >
+                <span
+                    className="font-black leading-none tracking-tight"
+                    style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'clamp(64px, 12vw, 160px)',
+                        color: 'rgba(255,255,255,0.92)',
+                        textShadow: '0 2px 40px rgba(0,0,0,0.6), 0 0 80px rgba(0,0,0,0.3)',
+                    }}
+                >
+                    СітіЧЕ
+                </span>
+                <span
+                    className="text-[13px] font-semibold tracking-[0.35em] uppercase mt-1"
+                    style={{ color: 'rgba(255,255,255,0.5)' }}
+                >
+                    Громадський портал Черкас
+                </span>
+            </div>
 
             {/* ── Картка контенту ── */}
             <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-16 pt-56">
@@ -133,21 +118,18 @@ export default function Hero() {
                                 boxShadow: '0 4px 20px rgba(59,130,246,0.4)',
                             }}
                         >
-                    
-         Переглянути категорії
+                            Переглянути категорії
                         </Link>
-
-                    <Link
+                        <Link
                             href="/about"
                             className="px-8 py-3.5 rounded-full font-semibold transition-all duration-200 hover:scale-105"
                             style={dark
                                 ? { background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff' }
-                                : { background: 'rgba(15,23,42,0.06)', border: '1px solid rgba(15,23,42,0.15)', color: '#0f172a' }
+                                : { background: 'rgba(37,99,235,0.08)', border: '1px solid rgba(37,99,235,0.3)', color: '#1d4ed8' }
                             }
                         >
                             Про розробників
                         </Link>
-                
                     </div>
 
                     {/* Статистика */}
@@ -174,18 +156,6 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
-
-            {/*/!* Scroll indicator *!/*/}
-            {/*<div className="relative z-10 flex justify-center pb-8">*/}
-            {/*    <div className="flex flex-col items-center gap-1 text-xs"*/}
-            {/*         style={{ color: dark ? 'rgba(255,255,255,0.4)' : 'rgba(15,23,42,0.45)' }}>*/}
-            {/*        <span className="text-sm">Гортати вниз</span>*/}
-            {/*        <svg className="animate-bounce" width="16" height="16" viewBox="0 0 16 16"*/}
-            {/*             fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">*/}
-            {/*            <path d="M3 6l5 5 5-5" />*/}
-            {/*        </svg>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </header>
     )
 }
