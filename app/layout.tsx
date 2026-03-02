@@ -3,7 +3,7 @@ import './styles/globals.css'
 import { Playfair_Display, Nunito } from 'next/font/google'
 import React from 'react'
 import {ThemeProvider} from "@/app/context/theme-context";
-import Header from "@/app/components/header";
+import ConditionalHeader from "@/app/components/conditional-header";
 
 const playfair = Playfair_Display({
     subsets:  ['latin', 'cyrillic'],
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="uk" data-theme="dark" className={`${playfair.variable} ${nunito.variable}`}>
         <body>
         <ThemeProvider>
-            <Header />
+            <ConditionalHeader />
             {children}
         </ThemeProvider>
         </body>
