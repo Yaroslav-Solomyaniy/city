@@ -10,18 +10,18 @@
 
     --bg-page:       #0f1729;
     --bg-surface:    #151f38;
-    --bg-card:       #23272e;
-    --bg-card-hover: #2a2f38;
+    --bg-card:       #16213a;
+    --bg-card-hover: #1d2d4f;
     --bg-input:      rgba(255,255,255,0.06);
 
-    --border:        rgba(255,255,255,0.07);
-    --border-card:   rgba(255,255,255,0.10);
+    --border:        rgba(255,255,255,0.08);
+    --border-card:   rgba(96,165,250,0.15);
     --border-input:  rgba(255,255,255,0.11);
     --border-hover:  rgba(96,165,250,0.4);
 
-    --text-primary:   #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted:     #475569;
+    --text-primary:   #e8f0fe;
+    --text-secondary: #93afd4;
+    --text-muted:     #5a7a9e;
     --text-accent:    #60a5fa;
 
     --filter-active-bg:     #1e2d4a;
@@ -259,32 +259,75 @@ body {
 
 /* CARDS */
 .city-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-card);
-    transition: transform .2s ease, box-shadow .2s ease;
-    /* NO will-change here — applying it permanently to 12 cards creates 12 GPU
-       compositor layers and destroys performance. Only promote on hover. */
+    background: #16213a;
+    border: 1px solid rgba(96,165,250,0.15);
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
 }
-.city-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.city-card:hover {
+    transform: translateY(-5px);
+    background: #1d2d4f;
+    border-color: rgba(96,165,250,0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(59,130,246,0.12), 0 0 0 1px rgba(96,165,250,0.2);
+}
+
+[data-theme='light'] .city-card {
+    background: #fff;
+    border: 1px solid #e2e8f2;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+[data-theme='light'] .city-card:hover {
+    background: #f8faff;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 0 0 1px #e2e8f2;
+}
 .city-card .card-img  { transition: transform .3s ease; will-change: transform; contain: strict; }
 .city-card:hover .card-img { transform: scale(1.06); }
 .card-arrow { transition: transform .2s; }
 .city-card:hover .card-arrow { transform: translateX(4px); }
 
-.res-list-item { transition: transform .18s cubic-bezier(.4,0,.2,1), box-shadow .18s; }
-.res-list-item:hover { transform: translateX(3px); box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+.res-list-item { transition: transform .18s cubic-bezier(.4,0,.2,1), box-shadow .18s, border-color .18s; }
 .res-list-item .list-ext { opacity: 0; transition: opacity .15s; }
 .res-list-item:hover .list-ext { opacity: 1; }
 
 .res-row { transition: background .15s; }
-.res-row:hover { background: var(--table-row-hover); }
 .res-row .row-ext { opacity: 0; transition: opacity .15s; }
 .res-row:hover .row-ext { opacity: 1; }
 
-.res-grid-card { transition: transform .22s cubic-bezier(.4,0,.2,1), box-shadow .22s; }
-.res-grid-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
+.res-grid-card { transition: transform .22s cubic-bezier(.4,0,.2,1), box-shadow .22s, border-color .22s; }
 .res-grid-card .grid-ext { opacity: 0; transition: opacity .15s; }
 .res-grid-card:hover .grid-ext { opacity: 1; }
+
+/* ── Dark theme card glow ── */
+[data-theme='dark'] .city-card {
+    background: #16213a;
+    border: 1px solid rgba(96,165,250,0.15);
+}
+[data-theme='dark'] .city-card:hover {
+    transform: translateY(-5px);
+    background: #1d2d4f;
+    border-color: rgba(96,165,250,0.35);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 28px rgba(59,130,246,0.13);
+}
+[data-theme='dark'] .res-list-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(59,130,246,0.1);
+    border-color: rgba(96,165,250,0.3) !important;
+}
+[data-theme='dark'] .res-row:hover { background: rgba(59,130,246,0.06); }
+[data-theme='dark'] .res-grid-card {
+    background: #16213a;
+    border: 1px solid rgba(96,165,250,0.15) !important;
+}
+[data-theme='dark'] .res-grid-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(96,165,250,0.35) !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 28px rgba(59,130,246,0.13);
+}
+
+/* ── Light theme card hover ── */
+[data-theme='light'] .res-list-item:hover { transform: translateX(3px); box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+[data-theme='light'] .res-row:hover { background: var(--table-row-hover); }
+[data-theme='light'] .res-grid-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
 
 @layer utilities {
     .text-shadow { text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
