@@ -57,6 +57,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="flex flex-col h-full">
             {/* Logo */}
             <div className="px-4 pt-5 pb-4 flex items-center gap-3 shrink-0">
+
                 <Link href="/" className="flex items-center gap-3 no-underline group">
                     <Image
                         src="/gerb.png"
