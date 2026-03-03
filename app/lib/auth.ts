@@ -1,55 +1,63 @@
-import {PrismaAdapter} from "@auth/prisma-adapter";
-import NextAuth from "next-auth";
-import Nodemailer from "@auth/core/providers/nodemailer";
-import {magicLinkEmail} from "@/app/lib/email-template";
-import prisma from "@/app/lib/prisma";
+// app/lib/auth.ts
 
+import NextAuth from 'next-auth'
+import Credentials from '@auth/core/providers/credentials'
+import bcrypt from 'bcrypt'
+import prisma from '@/app/lib/prisma'
+import { signInSchema } from '@/app/lib/zod'
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-    adapter: PrismaAdapter(prisma),
-
     session: {
-        strategy: 'database',
+        strategy: 'jwt',
     },
 
     pages: {
-        signIn:        '/auth/sign-in',
-        verifyRequest: '/auth/verify',
+        signIn: '/auth/sign-in',
     },
 
     providers: [
-        Nodemailer({
-            server: {
-                host: process.env.EMAIL_SERVER_HOST,
-                port: Number(process.env.EMAIL_SERVER_PORT),
-                auth: {
-                    user: process.env.EMAIL_SERVER_USER,
-                    pass: process.env.EMAIL_SERVER_PASSWORD,
-                },
+        Credentials({
+            name: 'Email і пароль',
+            credentials: {
+                email:    { label: 'Email',  type: 'email' },
+                password: { label: 'Пароль', type: 'password' },
             },
-            from: process.env.EMAIL_FROM,
-            async sendVerificationRequest({ identifier, url, provider }) {
-                const { host } = new URL(url)
-                const nodemailer = await import('nodemailer')
-                const transport = nodemailer.createTransport(provider.server)
-                const { subject, html, text } = magicLinkEmail({ url, host })
 
-                await transport.sendMail({
-                    to: identifier,
-                    from: provider.from,
-                    subject,
-                    text,
-                    html,
-                })
+            async authorize(credentials) {
+                try {
+                    const { email, password } = await signInSchema.parseAsync(credentials)
+
+                    const user = await prisma.user.findUnique({ where: { email } })
+
+                    if (!user || !user.password) return null
+
+                    const isValid = await bcrypt.compare(password, user.password)
+
+                    if (!isValid) return null
+
+                    return {
+                        id:    user.id,
+                        email: user.email,
+                        name:  user.name ?? null,
+                    }
+                } catch {
+                    return null
+                }
             },
         }),
     ],
 
     callbacks: {
-        async session({ session, user }) {
+        async jwt({ token, user }) {
             if (user) {
-                session.user.id   = user.id
-                session.user.role = (user).role
+                token.id = user.id
+            }
+            return token
+        },
+
+        async session({ session, token }) {
+            if (token) {
+                session.user.id = token.id as string
             }
             return session
         },

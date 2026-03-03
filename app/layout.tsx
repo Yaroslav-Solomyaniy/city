@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/app/context/theme-context'
 import ConditionalHeader from '@/app/components/conditional-header'
 import { SessionProvider } from 'next-auth/react'
 import {auth} from "@/app/lib/auth";
+import AdminPreviewBar from "@/app/components/admin-preview-bar";
 
 const playfair = Playfair_Display({
     subsets:  ['latin', 'cyrillic'],
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <ConditionalHeader />
                 {children}
             </ThemeProvider>
+            <AdminPreviewBar />
         </SessionProvider>
         </body>
         </html>
