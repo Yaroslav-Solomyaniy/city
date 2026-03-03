@@ -2,7 +2,7 @@
 
 'use client'
 
-import { useState, useEffect, FormEvent } from 'react'
+import {useState, useEffect, FormEvent, ChangeEvent} from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import Image from 'next/image'
 
@@ -39,7 +39,7 @@ export default function RegisterPage() {
             .catch(() => setStatus('invalid'))
     }, [token])
 
-    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         setError('')
 

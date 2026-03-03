@@ -9,7 +9,7 @@ import {
     X, Clock,
 } from 'lucide-react'
 import InnerPageLayout, {BottomNavItem} from "@/app/components/inner-page-layout";
-import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../constants/view-mode';
+import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../../constants/view-mode';
 
 /* ─── Data ───────────────────────────────────────────────────── */
 interface Category {
@@ -152,7 +152,7 @@ export default function CategoriesPage() {
                 <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 pb-6">
                     <div className="flex items-center gap-2 mb-4 text-[13px]" style={{ color: 'var(--text-muted)' }}>
                         <Link
-                            href="/"
+                            href="/public"
                             className="transition-colors hover:text-[color:var(--text-accent)]"
                             style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
                         >
@@ -220,7 +220,7 @@ export default function CategoriesPage() {
                                 return (
                                     <Link
                                         key={cat.id}
-                                        href={`/categories/${cat.id}`}
+                                        href={`/app/(pages)/categories/${cat.id}`}
                                         className="city-card flex flex-col rounded-2xl overflow-hidden shadow-sm no-underline"
                                     >
                                         {/* Colour bar */}
@@ -304,7 +304,7 @@ export default function CategoriesPage() {
                                 return (
                                     <Link
                                         key={cat.id}
-                                        href={`/categories/${cat.id}`}
+                                        href={`/app/(pages)/categories/${cat.id}`}
                                         className="res-list-item flex items-center gap-4 rounded-2xl shadow-sm px-5 py-4 no-underline"
                                         style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
                                     >
@@ -450,7 +450,7 @@ export default function CategoriesPage() {
                                     return (
                                         <li key={cat.id} style={{ borderBottom: '1px solid var(--border)' }}>
                                             <Link
-                                                href={`/categories/${cat.id}`}
+                                                href={`/app/(pages)/categories/${cat.id}`}
                                                 onClick={() => setRecentModal(false)}
                                                 className="flex items-center gap-3 px-5 py-3.5 no-underline transition-colors"
                                                 style={{ color: 'inherit' }}

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import './styles/globals.css'
+import '../styles/globals.css'
 import { Playfair_Display, Nunito } from 'next/font/google'
 import React from 'react'
 import { ThemeProvider } from '@/app/context/theme-context'
