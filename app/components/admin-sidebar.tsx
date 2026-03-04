@@ -29,7 +29,6 @@ const NAV_SECTIONS = [
         title: 'Інструменти',
         items: [
             { href: '/admin/feedback', label: 'Зворотній зв\'язок', icon: MessageSquare },
-            { href: '/admin/settings', label: 'Налаштування',       icon: Settings },
             { href: '/admin/logs',     label: 'Логи дій',           icon: ScrollText },
         ],
     },

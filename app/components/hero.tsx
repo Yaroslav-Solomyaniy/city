@@ -15,7 +15,7 @@ export default function Hero() {
             {/* ── Фото — одне для обох тем ── */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/panorama3.jpg"
+                    src="/panorama.jpg"
                     alt="Панорама міста"
                     fill
                     priority

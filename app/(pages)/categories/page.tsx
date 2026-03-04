@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import InnerPageLayout, {BottomNavItem} from "@/app/components/inner-page-layout";
 import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../../constants/view-mode';
+import Image from "next/image";
 
 /* ─── Data ───────────────────────────────────────────────────── */
 interface Category {
@@ -75,6 +76,12 @@ export default function CategoriesPage() {
 
     const sidebar = (
         <>
+            <Image
+                src="/Cherkasy_Color_Mini.png"
+                width={450} height={400}
+                alt="Герб"
+                className="transition-transform duration-200 group-hover:scale-105 border-4"
+            />
             {/* Search */}
             <div
                 className="flex items-center gap-2.5 rounded-xl px-4 py-3"
@@ -220,7 +227,7 @@ export default function CategoriesPage() {
                                 return (
                                     <Link
                                         key={cat.id}
-                                        href={`/app/(pages)/categories/${cat.id}`}
+                                        href={`/categories/${cat.id}`}
                                         className="city-card flex flex-col rounded-2xl overflow-hidden shadow-sm no-underline"
                                     >
                                         {/* Colour bar */}
@@ -304,7 +311,7 @@ export default function CategoriesPage() {
                                 return (
                                     <Link
                                         key={cat.id}
-                                        href={`/app/(pages)/categories/${cat.id}`}
+                                        href={`/categories/${cat.id}`}
                                         className="res-list-item flex items-center gap-4 rounded-2xl shadow-sm px-5 py-4 no-underline"
                                         style={{ background: 'var(--bg-card)', border: '1px solid var(--border-card)' }}
                                     >
@@ -450,7 +457,7 @@ export default function CategoriesPage() {
                                     return (
                                         <li key={cat.id} style={{ borderBottom: '1px solid var(--border)' }}>
                                             <Link
-                                                href={`/app/(pages)/categories/${cat.id}`}
+                                                href={`/categories/${cat.id}`}
                                                 onClick={() => setRecentModal(false)}
                                                 className="flex items-center gap-3 px-5 py-3.5 no-underline transition-colors"
                                                 style={{ color: 'inherit' }}
