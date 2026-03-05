@@ -1,22 +1,25 @@
+// app/components/admin-sidebar.tsx
+
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect, useLayoutEffect} from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useTheme } from '@/app/context/theme-context'
 import {
     LayoutDashboard, FolderTree, Globe, Users,
-    MessageSquare, Settings, ScrollText, LogOut,
+    MessageSquare, Settings, ScrollText,
     ChevronLeft, ChevronRight, Menu, X,
 } from 'lucide-react'
+import AdminSidebarActions from '@/app/components/admin-sidebar-actions'
 
-/* ─── Sidebar nav items ─────────────────────────────────────── */
+/* ─── Nav items ──────────────────────────────────────────────── */
 const NAV_SECTIONS = [
     {
         title: 'Головне',
         items: [
-            { href: '/admin',               label: 'Дашборд',        icon: LayoutDashboard },
+            { href: '/admin',                label: 'Дашборд',        icon: LayoutDashboard },
             { href: '/admin/categories',     label: 'Категорії',      icon: FolderTree },
             { href: '/admin/resources',      label: 'Ресурси',        icon: Globe },
             { href: '/admin/administrators', label: 'Адміністратори', icon: Users },
@@ -26,22 +29,22 @@ const NAV_SECTIONS = [
         title: 'Інструменти',
         items: [
             { href: '/admin/feedback', label: 'Зворотній зв\'язок', icon: MessageSquare },
-            { href: '/admin/settings', label: 'Налаштування',       icon: Settings },
             { href: '/admin/logs',     label: 'Логи дій',           icon: ScrollText },
         ],
     },
 ]
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminSidebar() {
     const pathname = usePathname()
     const { isDark, toggleTheme, mounted } = useTheme()
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed]   = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
 
-    // Close mobile menu on route change
-    useEffect(() => { setMobileOpen(false) }, [pathname])
+    useEffect(() => {
+        const t = setTimeout(() => setMobileOpen(false), 0)
+        return () => clearTimeout(t)
+    }, [pathname])
 
-    // Close mobile on lg+
     useEffect(() => {
         const mq = window.matchMedia('(min-width: 1024px)')
         const handler = () => { if (mq.matches) setMobileOpen(false) }
@@ -52,9 +55,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const isActive = (href: string) =>
         href === '/admin' ? pathname === '/admin' : pathname.startsWith(href)
 
-    /* ─── Sidebar content (shared desktop/mobile) ───────────── */
+    /* ─── Sidebar content ────────────────────────────────────── */
     const sidebarContent = (
         <div className="flex flex-col h-full">
+
             {/* Logo */}
             <div className="px-4 pt-5 pb-4 flex items-center gap-3 shrink-0">
                 <Link href="/" className="flex items-center gap-3 no-underline group">
@@ -79,10 +83,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </Link>
             </div>
 
-            {/* Divider */}
             <div className="mx-4 h-px" style={{ background: 'var(--border)' }} />
 
-            {/* Nav sections */}
+            {/* Nav */}
             <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-5">
                 {NAV_SECTIONS.map(section => (
                     <div key={section.title}>
@@ -112,10 +115,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                                 color: 'var(--admin-nav-active-text)',
                                                 boxShadow: 'var(--admin-nav-active-shadow)',
                                             }
-                                            : {
-                                                background: 'transparent',
-                                                color: 'var(--text-secondary)',
-                                            }
+                                            : { background: 'transparent', color: 'var(--text-secondary)' }
                                         }
                                         onMouseEnter={e => {
                                             if (!active) {
@@ -144,11 +144,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 ))}
             </nav>
 
-            {/* Divider */}
             <div className="mx-4 h-px" style={{ background: 'var(--border)' }} />
 
-            {/* Bottom area */}
+            {/* Bottom */}
             <div className="px-3 py-4 space-y-1 shrink-0">
+
                 {/* Theme toggle */}
                 <button
                     onClick={toggleTheme}
@@ -158,12 +158,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         ${collapsed ? 'justify-center px-2 py-2.5' : 'px-3 py-2.5'}
                     `}
                     style={{ color: 'var(--text-secondary)' }}
-                    onMouseEnter={e => {
-                        (e.currentTarget as HTMLElement).style.background = 'var(--admin-nav-hover-bg)'
-                    }}
-                    onMouseLeave={e => {
-                        (e.currentTarget as HTMLElement).style.background = 'transparent'
-                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--admin-nav-hover-bg)' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                 >
                     {mounted && isDark ? (
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -186,42 +182,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         ${collapsed ? 'justify-center px-2 py-2.5' : 'px-3 py-2.5'}
                     `}
                     style={{ color: 'var(--text-muted)' }}
-                    onMouseEnter={e => {
-                        (e.currentTarget as HTMLElement).style.background = 'var(--admin-nav-hover-bg)'
-                    }}
-                    onMouseLeave={e => {
-                        (e.currentTarget as HTMLElement).style.background = 'transparent'
-                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--admin-nav-hover-bg)' }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
                 >
                     {collapsed ? <ChevronRight size={17} /> : <><ChevronLeft size={17} /><span>Згорнути</span></>}
                 </button>
 
-                {/* Back to portal */}
-                <Link
-                    href="/"
-                    className={`
-                        flex items-center gap-3 rounded-xl text-[13px] font-medium
-                        transition-all duration-150 no-underline
-                        ${collapsed ? 'justify-center px-2 py-2.5' : 'px-3 py-2.5'}
-                    `}
-                    style={{ color: 'var(--text-muted)' }}
-                    onMouseEnter={e => {
-                        (e.currentTarget as HTMLElement).style.background = 'var(--admin-nav-hover-bg)'
-                    }}
-                    onMouseLeave={e => {
-                        (e.currentTarget as HTMLElement).style.background = 'transparent'
-                    }}
-                >
-                    <LogOut size={17} />
-                    {!collapsed && <span>На портал</span>}
-                </Link>
+                {/* Portal + Sign out */}
+                <AdminSidebarActions collapsed={collapsed} />
             </div>
         </div>
     )
 
     return (
-        <div className="min-h-screen flex" style={{ background: 'var(--admin-page-bg)' }}>
-
+        <>
             {/* ══ DESKTOP SIDEBAR ══ */}
             <aside
                 className="hidden lg:flex flex-col shrink-0 sticky top-0 h-screen transition-all duration-300 z-30"
@@ -253,7 +227,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     transform: mobileOpen ? 'translateX(0)' : 'translateX(-100%)',
                 }}
             >
-                {/* Close button */}
                 <button
                     onClick={() => setMobileOpen(false)}
                     className="absolute top-4 right-3 w-8 h-8 flex items-center justify-center rounded-lg transition-colors"
@@ -264,38 +237,29 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 {sidebarContent}
             </aside>
 
-            {/* ══ MAIN CONTENT ══ */}
-            <div className="flex-1 min-w-0 flex flex-col">
-
-                {/* Mobile top bar */}
-                <div
-                    className="lg:hidden sticky top-0 z-20 flex items-center gap-3 px-4 h-14"
-                    style={{
-                        background: 'var(--admin-topbar-bg)',
-                        borderBottom: '1px solid var(--admin-sidebar-border)',
-                        backdropFilter: 'blur(12px)',
-                    }}
+            {/* ══ MOBILE TOP BAR ══ */}
+            <div
+                className="lg:hidden fixed top-0 left-0 right-0 z-20 flex items-center gap-3 px-4 h-14"
+                style={{
+                    background: 'var(--admin-topbar-bg)',
+                    borderBottom: '1px solid var(--admin-sidebar-border)',
+                    backdropFilter: 'blur(12px)',
+                }}
+            >
+                <button
+                    onClick={() => setMobileOpen(true)}
+                    className="w-9 h-9 flex items-center justify-center rounded-xl transition-colors"
+                    style={{ color: 'var(--text-secondary)' }}
                 >
-                    <button
-                        onClick={() => setMobileOpen(true)}
-                        className="w-9 h-9 flex items-center justify-center rounded-xl transition-colors"
-                        style={{ color: 'var(--text-secondary)' }}
-                    >
-                        <Menu size={20} />
-                    </button>
-                    <div className="flex items-center gap-2.5">
-                        <Image src="/gerb.png" width={26} height={26} alt="Герб" />
-                        <span className="font-bold text-[13px]" style={{ color: 'var(--text-primary)' }}>
-                            Адмін-панель
-                        </span>
-                    </div>
+                    <Menu size={20} />
+                </button>
+                <div className="flex items-center gap-2.5">
+                    <Image src="/gerb.png" width={26} height={26} alt="Герб" />
+                    <span className="font-bold text-[13px]" style={{ color: 'var(--text-primary)' }}>
+                        Адмін-панель
+                    </span>
                 </div>
-
-                {/* Page content */}
-                <main className="flex-1 p-4 sm:p-6 lg:p-8">
-                    {children}
-                </main>
             </div>
-        </div>
+        </>
     )
 }

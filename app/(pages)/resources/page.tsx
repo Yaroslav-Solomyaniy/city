@@ -9,7 +9,7 @@ import {
     X,
 } from 'lucide-react'
 import InnerPageLayout, {BottomNavItem} from "@/app/components/inner-page-layout";
-import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../constants/view-mode';
+import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../../constants/view-mode';
 
 /* ─── Data ──────────────────────────────────────────────────────── */
 interface Resource {
@@ -195,7 +195,7 @@ export default function ResourcesPage() {
                 {/* PAGE HEADER */}
                 <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 pb-6">
                     <div className="flex items-center gap-2 mb-4 text-[13px]" style={{ color: 'var(--about-muted)' }}>
-                        <Link href="/" className="transition-colors hover:text-blue-400" style={{ color: 'var(--about-muted)', textDecoration: 'none' }}>
+                        <Link href="/public" className="transition-colors hover:text-blue-400" style={{ color: 'var(--about-muted)', textDecoration: 'none' }}>
                             Головна
                         </Link>
                         <span className="text-[10px]">›</span>
