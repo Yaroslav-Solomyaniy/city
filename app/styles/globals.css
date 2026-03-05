@@ -104,6 +104,33 @@
     --about-warn-bg:    rgba(239,68,68,0.08);
     --about-warn-border: rgba(239,68,68,0.2);
     --about-warn-text:  #fca5a5;
+
+    /* ── Admin Panel ── */
+    --admin-page-bg:          #0c1220;
+    --admin-sidebar-bg:       #101828;
+    --admin-sidebar-border:   rgba(255,255,255,0.06);
+    --admin-topbar-bg:        rgba(12,18,32,0.92);
+    --admin-nav-active-bg:    rgba(59,130,246,0.15);
+    --admin-nav-active-text:  #60a5fa;
+    --admin-nav-active-shadow: inset 0 0 0 1px rgba(59,130,246,0.25);
+    --admin-nav-hover-bg:     rgba(255,255,255,0.04);
+    --admin-stat-bg:          rgba(255,255,255,0.03);
+    --admin-stat-border:      rgba(255,255,255,0.06);
+    --admin-stat-hover:       rgba(255,255,255,0.05);
+    --admin-chart-bg:         rgba(255,255,255,0.02);
+    --admin-chart-border:     rgba(255,255,255,0.06);
+    --admin-table-bg:         rgba(255,255,255,0.02);
+    --admin-table-border:     rgba(255,255,255,0.06);
+    --admin-table-row-hover:  rgba(255,255,255,0.03);
+    --admin-badge-bg:         rgba(59,130,246,0.15);
+    --admin-badge-text:       #60a5fa;
+    --admin-badge-border:     rgba(59,130,246,0.25);
+    --admin-success-bg:       rgba(34,197,94,0.12);
+    --admin-success-text:     #4ade80;
+    --admin-warning-bg:       rgba(245,158,11,0.12);
+    --admin-warning-text:     #fbbf24;
+    --admin-danger-bg:        rgba(239,68,68,0.12);
+    --admin-danger-text:      #f87171;
 }
 
 /* LIGHT */
@@ -204,6 +231,33 @@
     --about-warn-bg:    #fef2f2;
     --about-warn-border: #fecaca;
     --about-warn-text:  #dc2626;
+
+    /* ── Admin Panel ── */
+    --admin-page-bg:          #f6f8fb;
+    --admin-sidebar-bg:       #ffffff;
+    --admin-sidebar-border:   #e8edf5;
+    --admin-topbar-bg:        rgba(255,255,255,0.92);
+    --admin-nav-active-bg:    rgba(37,99,235,0.08);
+    --admin-nav-active-text:  #1d4ed8;
+    --admin-nav-active-shadow: inset 0 0 0 1px rgba(37,99,235,0.18);
+    --admin-nav-hover-bg:     #f1f5f9;
+    --admin-stat-bg:          #ffffff;
+    --admin-stat-border:      #e8edf5;
+    --admin-stat-hover:       #f8faff;
+    --admin-chart-bg:         #ffffff;
+    --admin-chart-border:     #e8edf5;
+    --admin-table-bg:         #ffffff;
+    --admin-table-border:     #e8edf5;
+    --admin-table-row-hover:  #f8faff;
+    --admin-badge-bg:         rgba(37,99,235,0.08);
+    --admin-badge-text:       #1d4ed8;
+    --admin-badge-border:     rgba(37,99,235,0.2);
+    --admin-success-bg:       rgba(22,163,74,0.08);
+    --admin-success-text:     #16a34a;
+    --admin-warning-bg:       rgba(217,119,6,0.08);
+    --admin-warning-text:     #d97706;
+    --admin-danger-bg:        rgba(220,38,38,0.08);
+    --admin-danger-text:      #dc2626;
 }
 
 /* BASE */

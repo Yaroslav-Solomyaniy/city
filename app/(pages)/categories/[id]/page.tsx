@@ -270,7 +270,7 @@ export default function CategoryPage() {
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7))' }}/>
                 <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 pb-6 max-w-7xl mx-auto">
                     <div className="flex items-center gap-2 mb-2 text-[13px] text-white/70">
-                        <Link href="/" className="no-underline text-white/70 hover:text-white transition-colors">Головна</Link>
+                        <Link href="/public" className="no-underline text-white/70 hover:text-white transition-colors">Головна</Link>
                         <span className="text-[10px]">{">"}</span>
                         <Link href="/categories" className="no-underline text-white/70 hover:text-white transition-colors">Категорії</Link>
                         <span className="text-[10px]">{">"}</span>

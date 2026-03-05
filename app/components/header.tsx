@@ -118,7 +118,13 @@ export default function Header() {
                             src="/gerb.png"
                             width={36} height={36}
                             alt="Герб Черкаської міської ради"
-                            className="transition-transform duration-200 group-hover:scale-105"
+                            className="hidden htransition-transform duration-200 group-hover:scale-105 lg:block"
+                        />
+                        <Image
+                            src="/Cherkasy_Color_Mini.png"
+                            width={150} height={48}
+                            alt="Герб"
+                            className="block transition-transform duration-200 group-hover:scale-105 border-4 lg:hidden"
                         />
                         <div className="hidden md:flex flex-col leading-tight">
                             <span

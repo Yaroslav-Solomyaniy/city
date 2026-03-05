@@ -9,7 +9,8 @@ import {
     X, Clock,
 } from 'lucide-react'
 import InnerPageLayout, {BottomNavItem} from "@/app/components/inner-page-layout";
-import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../constants/view-mode';
+import { DEFAULT_VIEW, VIEW_OPTIONS, ViewMode } from '../../constants/view-mode';
+import Image from "next/image";
 
 /* ─── Data ───────────────────────────────────────────────────── */
 interface Category {
@@ -75,6 +76,12 @@ export default function CategoriesPage() {
 
     const sidebar = (
         <>
+            <Image
+                src="/Cherkasy_Color_Mini.png"
+                width={450} height={400}
+                alt="Герб"
+                className="transition-transform duration-200 group-hover:scale-105 border-4"
+            />
             {/* Search */}
             <div
                 className="flex items-center gap-2.5 rounded-xl px-4 py-3"
@@ -152,7 +159,7 @@ export default function CategoriesPage() {
                 <div className="max-w-[1280px] mx-auto px-4 sm:px-6 pt-10 pb-6">
                     <div className="flex items-center gap-2 mb-4 text-[13px]" style={{ color: 'var(--text-muted)' }}>
                         <Link
-                            href="/"
+                            href="/public"
                             className="transition-colors hover:text-[color:var(--text-accent)]"
                             style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
                         >
