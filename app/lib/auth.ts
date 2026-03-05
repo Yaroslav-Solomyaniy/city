@@ -51,6 +51,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         async jwt({ token, user }) {
             if (user) {
                 token.id = user.id
+
+                await prisma.user.update({
+                    where: { id: user.id },
+                    data:  { lastSeenAt: new Date() },
+                })
             }
             return token
         },

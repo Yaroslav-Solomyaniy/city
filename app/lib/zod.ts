@@ -13,4 +13,19 @@ export const signInSchema = z.object({
         .max(32, { message: "Пароль має бути не більше 32 символів" }),
 });
 
-export type SignInFormData = z.infer<typeof signInSchema>;
+export const registerAdminSchema = z.object({
+    token: z.string().min(1, 'Недійсне запрошення'),
+
+    name: z
+        .string()
+        .trim()
+        .min(1, "Ім'я не може бути порожнім")
+        .max(100, "Ім'я занадто довге")
+        .optional()
+        .or(z.literal('')),
+
+    password: z
+        .string()
+        .min(8, 'Пароль має бути не менше 8 символів')
+        .max(32, 'Пароль має бути не більше 32 символів'),
+})

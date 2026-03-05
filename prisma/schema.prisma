@@ -7,26 +7,172 @@ generator client {
   output   = "./src/generated/prisma"
 }
 
+// ─────────────────────────────────────────────
+// AUTH
+// ─────────────────────────────────────────────
+
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  name          String
   email         String    @unique
   emailVerified DateTime?
   password      String
   image         String?
 
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  lastSeenAt DateTime?
+
+  invitesSent  InviteToken[] @relation("InviteCreatedBy")
+  activityLogs ActivityLog[]
+}
+
+model InviteToken {
+  id      String   @id @default(cuid())
+  token   String   @unique @default(cuid())
+  email   String
+  used    Boolean  @default(false)
+  expires DateTime
+
+  createdBy     String
+  createdByUser User   @relation("InviteCreatedBy", fields: [createdBy], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+// ─────────────────────────────────────────────
+// PORTAL CONTENT
+// ─────────────────────────────────────────────
+
+model Category {
+  id          String @id @default(cuid())
+  title       String // "Здоров'я"
+  titleEn     String // "Health"
+  iconName    String // "Heart" — lucide icon name
+  photo       String
+  description String
+  accent      String @default("#3b82f6") // HEX колір акценту
+  bg          String @default("#eff6ff") // HEX фону іконки
+  order       Int    @default(0) // для ручного сортування
+
+  services      String[] // ["Лікарні", "Поліклініки", ...]
+  subcategories Subcategory[]
+  resources     Resource[]
+  activityLogs  ActivityLog[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-// Токен запрошення для реєстрації нового адміністратора
-model InviteToken {
-  id        String   @id @default(cuid())
-  token     String   @unique @default(cuid())
-  email     String
-  used      Boolean  @default(false)
-  expires   DateTime
-  createdBy String // userId того хто запросив
+model Subcategory {
+  id          String @id @default(cuid())
+  title       String // "Лікарні"
+  titleEn     String // "Hospitals"
+  description String
+  order       Int    @default(0)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  resources    Resource[]
+  activityLogs ActivityLog[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Resource {
+  id          String   @id @default(cuid())
+  title       String // "Черкаська обласна лікарня"
+  icon        String
+  description String? // короткий опис
+  url         String // https://...
+  tags        String[] // ["лікарня", "стаціонар"]
+  order       Int      @default(0)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  subcategoryId String?
+  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id], onDelete: SetNull)
+
+  activityLogs ActivityLog[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// FEEDBACK
+// ─────────────────────────────────────────────
+
+enum FeedbackType {
+  FEEDBACK // загальний відгук
+  ADD_RESOURCE // пропозиція додати ресурс
+  REMOVE_RESOURCE // запит видалити ресурс
+  ADD_CATEGORY // пропозиція нової категорії
+}
+
+enum FeedbackStatus {
+  NEW // нове, не переглянуто
+  REVIEWED // переглянуто
+  RESOLVED // вирішено
+}
+
+model Feedback {
+  id     String         @id @default(cuid())
+  type   FeedbackType   @default(FEEDBACK)
+  status FeedbackStatus @default(NEW)
+
+  subject String
+  message String
+  author  String // ім'я відправника
+  email   String // email відправника
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// ACTIVITY LOG
+// ─────────────────────────────────────────────
+
+enum LogAction {
+  CREATE
+  EDIT
+  DELETE
+  LOGIN
+  LOGOUT
+  INVITE
+}
+
+enum LogEntity {
+  CATEGORY
+  SUBCATEGORY
+  RESOURCE
+  ADMIN
+  SETTINGS
+}
+
+model ActivityLog {
+  id         String    @id @default(cuid())
+  action     LogAction
+  entity     LogEntity
+  entityName String // snapshot назви на момент дії
+  details    String? // додаткові деталі
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  // опціональні зв'язки для швидкого пошуку логів по об'єкту
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  subcategoryId String?
+  subcategory   Subcategory? @relation(fields: [subcategoryId], references: [id], onDelete: SetNull)
+
+  resourceId String?
+  resource   Resource? @relation(fields: [resourceId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now())
 }
