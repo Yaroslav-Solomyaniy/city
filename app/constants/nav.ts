@@ -1,10 +1,8 @@
-// app/constants/nav.ts
+import { ROUTES } from './routes'
 
-export type NavLink = { href: string; label: string }
-
-export const NAV_LINKS: readonly NavLink[] = [
-  { href: '/',           label: 'Головна'    },
-  { href: '/categories', label: 'Категорії'  },
-  { href: '/resources',  label: 'Ресурси'    },
-  { href: '/about',      label: 'Про портал' },
+export const NAV_LINKS = [
+    ROUTES.HOME,
+    ROUTES.CATEGORIES,
+    ROUTES.RESOURCES,
+    ROUTES.ABOUT,
 ] as const

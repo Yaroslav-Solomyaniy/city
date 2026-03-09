@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import {useTheme} from "@/app/context/theme-context";
-import { NAV_LINKS } from '../constants/nav'
+import {NAV_LINKS} from "@/app/constants/nav";
 
 
 export default function Header() {

@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
             const user = await tx.user.create({
                 data: {
                     email:         invite.email,
-                    name:          name?.trim() || null,
+                    name:          name?.trim() || 'Unknown',
                     password:      hashed,
                     emailVerified: new Date(),
                 },

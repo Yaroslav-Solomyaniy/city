@@ -9,6 +9,10 @@ import {
 } from 'lucide-react'
 import { getAdministrators } from '@/app/actions/admin/administrators/get-admins'
 import { formatLastSeen } from '@/app/lib/format-date'
+import {Breadcrumb} from "@/app/components/ui/Breadcrumb";
+import Empty from "@/app/components/ui/empty";
+import {ROUTES} from "@/app/constants/routes";
+
 
 /* ─── Types ──────────────────────────────────────────────────── */
 type Admin  = Awaited<ReturnType<typeof getAdministrators>>['admins'][number]
@@ -88,15 +92,11 @@ export function AdministratorsClient({ admins: initialAdmins, invites: initialIn
     }
 
     return (
-        <div className="max-w-[960px] mx-auto">
+        <div className="max-w-240 mx-auto">
 
             {/* ── Header ── */}
-            <div className="mb-8">
-                <div className="flex items-center gap-2 mb-1 text-[13px]" style={{ color: 'var(--text-muted)' }}>
-                    <span>Адмін-панель</span>
-                    <span className="text-[10px]">›</span>
-                    <span style={{ color: 'var(--text-primary)' }}>Адміністратори</span>
-                </div>
+            <div className="mb-10 mt-5">
+                <Breadcrumb items={[ROUTES.ADMIN.ROOT, ROUTES.ADMIN.ADMINISTRATORS]}/>
                 <div className="flex items-end justify-between gap-4">
                     <div>
                         <h1
@@ -277,10 +277,7 @@ export function AdministratorsClient({ admins: initialAdmins, invites: initialIn
                     </div>
 
                     {invites.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center gap-2 py-12">
-                            <Ghost size={28} style={{ color: 'var(--text-muted)', opacity: 0.4 }} />
-                            <p className="text-[13px] m-0" style={{ color: 'var(--text-muted)' }}>Ой, тут пусто)</p>
-                        </div>
+                        <Empty/>
                     ) : invites.map((invite, i) => (
                         <div
                             key={invite.id}
